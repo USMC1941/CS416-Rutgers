@@ -1,266 +1,85 @@
-# HW0: Skills Survey
+# CS416 Assignment 0: The Segfault That Wasn't
 
-## Instructions
+## Overview
 
-* Be as truthful as possible on the questions below. 
-* The goal is to accurately assess your abilities and to optimally place you with other students that will compliment you.  It is not to get every question right. 
-* Please refrain from using external resources to try to find answers. 
-* Use only what you knew before you saw this questionnaire, trial and error and perhaps the man pages.
+In this assignment you will take some skeleton code that dereferences memory address 0, and cause it to run to completion through the clever use of a signal handler. 
 
-## Preliminary Questions
+This assignment is intended to expand upon and reinforce details of the stack, processes and how the OS executes code.
 
-NetID:
+You will need to do a fair amount of investigation and reading in order to accomplish this assignment. If you are unfamiliar or uncomfortable with C, it will take longer.
 
-Expected Graduation Date (month/year):
+When you compile, be sure to use 32-bit mode (`-m32`) and no optimizations (`-O0`) in order to make your code as consistent as possible between runs.
 
-Which section are you in:
-* Section 1
-* Section 2
-* Section 3
-
-Semesters Completed in Current Degree:
-
-Undergrad Degree/Major: (circle)
-* CS
-* Math
-* Stats
-* Eng
-* Bio
-* Eco
-* Other -
-
-Grad Degree/Major: (circle)
-* None yet
-* CS
-* Math
-* Stats
-* Eng
-* Bio
-* Eco
-* Other -
-
-Have you had a course in:
-* Data Structures
-* Discrete Math
-* Computer Algorithms
-* Operating Systems
-* Computer Architecture
-
-Rate Proficiency in: [0-9]
-* UNIX\Linux
-* Assembly
-* C
-* C++
-* Java
-* Python
-
-Rate Proficiency in: [0-9]
-* Programming
-* Algorithms
-* Proving Theorems
-* Machine Learning
-* Computer Systems
-* Networking
-* Compilers
+This assignment is individual. Feel free to converse with other students about the assignment, but do not collaborate.
 
 
-Rate Proficiency in: [0-9]
-* Physics
-* EE
-* Comp Eng
-* Bio
-* Stats
 
-Describe Yourself As: [0-9]
-* Programme
-* Mathematician
-* Engineer
-* Technician
-* Biologist
-* Algorithmicist
+## Specifics of Operation
 
-## Questions
+Taking the skeleton code attached below, add a signal handler that causes the code to run to completion. 
 
-<ol start="0">
-  <li>Predict the output of this snippit: </li>
-  
-  ```c
-int main() {
-	int main = 56;
-	printf("%d\n", main);
-	return 0;
-}
-  ```
- a) Compiler Error
- 
-b) Depends on the compiler
+* You can not change any code BUT the signal handler.
 
-c) 5
+The signal handler in the code will be called on any segmentation violation. 
 
-d) none of above
- 
-  <li>Predict the output of this snippit: </li>
-  
-  ```c
-#include <stdio.h>
+* Dereferencing memory address 0 is pretty much guaranteed to do that. 
 
-int main() {
-	char ch;
-	if (ch = printf("")) {
-		printf("It matters\n");
-	}
-	else {
-		printf("It doesn't matter\n");
-	}
+Linux will first run your signal handler to give you a chance to address the segment fault. 
 
-	return 0;
-}
+* If you return from the signal handler and the same signal occurs, then Linux will stop your code with a segmentation fault. 
 
-  ```
-  
-a) It matters
+You must, in the signal handler only, make sure the segmentation fault does not occur a second time. 
 
-b) It doesn’t matter
+The problem is that Linux will attempt to run the offending instruction again. 
+* So you must somehow make it not run that instruction. 
 
-c) Run time error
+The key to doing this is the signal number.
 
-d) Nothing
-  
-  <li>How many times is Hello world printed by the code snippit below?</li>
-  
-  ```c
-  int main() {
-	fork();
-	fork();
-	printf("Hello world\n");
-}
-  ```
-a) 1
+---
 
-b) 2
+When your code hits the segment fault, it asks the OS what to do. 
+* The OS notices you have a signal handler declared, so it hands the reins over to your signal handler. 
+* In the signal handler, you get a signal number as input to tell you which type of signal occurred. 
 
-c) 4
+This is the start of your cunning plan. 
+* That integer is sitting in the stored stack of your code that had been running. 
+* If you grab the address of that int, you can then build a pointer TO your code's stored stack frame, pointing at the place where the flags and signals are stored. 
+* You can now manipulate ANY value in your code's stored stack frame.
 
-d) 8
+You can't change the access of memory address 0, but you can make it not happen. 
 
-  <li>What is the output of this C code?</li>
-  
-  ```c
-  #include <stdio.h>
+You need to advance the program counter manually, so that when your signal handler returns, the OS will load your code, but it will start running it AFTER the bad access, making it as if the bad access never happened.
 
-int main() {
-	int x = 1, y = 0, z = 5;
-	int a = x && y || ++z;
+---
 
-	printf("%d\n", z++);
-}
-  ```
-a) 1
+### Things you will need to find out:
 
-b) 5
+1. Where is the program counter stored, relative to where the signal/flags are stored?
 
-c) 6
+* Once you know this, you can increment the pointer pointing to the segment fault flag to point at the program counter
 
-d) 7
+2. How long is the bad instruction?
+
+* You need to look at the assembly and determine how long the bad instruction is in order to increment the program counter by the correct amount to skip to the next instruction.
+
+### Some helpful bits:
+
+* You can compile C to assembly, rather than machine code, by compiling with the `-S` switch.
+* You can compile C with debugging information by using the `-g` switch, so that you can use GDB, the C debugger.
+  * You can do a lot of things with GDB. 
+  * You can, for instance, step through the code line by line until it segment faults, and look at stack frame data as you go.
+
+## Resources
+Attached is the skeleton code you should edit.
+
+## Submission
+
+* Submit your code through Sakai before the due date.
+* Your code must operate on one of the iLab machines.
+* Your code must use the attached C code as a base.
+* You must not change the main function, but you may alter the signal handler.
+* Note your name and the iLab machine you wrote and tested your code on as comment at the top of the file.
+* Submit your undead source code on Sakai, being sure to note in the comments which machine you ran and tested your code on.
+
 
   
-  
-  <li>What is the output of this C code?</li>
-  
-  ```c
-  #include <stdio.h>
-
-int main() {
-	int y = 2;
-	int z = y + (y = 10);
-	printf("%d\n", z);
-}
-  ```
-a) 2
-
-b) 4
-
-c) 20
-
-d) Compile time error
- 
-  <li>What is the output of this C code?</li>
-  
-  ```c
-  #define max(a) a
-
-int main() {
-	int x = 1;
-	switch (x)
-	{
-		case max(2):
-			printf("yes\n");
-		case max(1):
-			printf("no\n");
-		break;
-	}
-}
-  ```
-  
-a) yes
-
-b) no
-
-c) Runtime error
-
-d) Compile time error
-
-  <li>What is the output of this C code?</li>
-  
-  ```c
-  #include <stdio.h>
-
-int main() {
-	int x = 35;
-	printf("%d %d %d", x == 35, x = 50, x > 40);
-}
-  ```  
-  
-a) 1 50 1
-
-b) 0 50 0
-
-c) Runtime error
-
-d) Compile time error
-
-  <li>You have two numbers, A and B. 
-  
-  Using bitwise operations and loops, write code to determine how many bits must be flipped in order to turn A in to B.</li>
-
-e.g.
-
-A: 101001
-
-B: 10**01**01
-
-Answer: 2 bits
-
-  <li>Presume you have an implementation of Quicksort that picks the first element in a list as its pivot. 
-  
-  Construct a list of 13 numbers that would make this algorithm run in O(n^2) time.</li>
-  
- 
-  <li>Write code to solve the below in O(n) time with one pass over the array. If you can not, provide your best code and state the asymptotic running time.</li>
-  
-  * In this challenge, given an array of integers, the goal is to efficiently find the subarray that has the greatest positive value when all of its elements are summed together.
-  * Write some code that, if given an array of integers, will find the subarray that has the greatest sum. A subarray is a contiguous subset of the original array.
-  * Keep in mind the maximal subarray is not necessary a proper subset, and might contain the whole original array.
-    * Be careful. Some array elements may be negative, so less can be more.
-    * If all the elements in an array are negative, the maximal sum should be null as we are interested in the greatest positive value, not the greatest arithmetic value.
- * For example: Given the array: `{1, 2, -5, 4, -3, 2}`
-    * The maximum sum of a subarray is 4 and it contains only the element 4.
- * Before you write the code, take some time to think of the most efficient solution possible; it may surprise you. The major goal of this question is to test your algorithmic skills rather than merely your ability to write code quickly.
-
-  <li>RE pattern matching. 
-
-  Draw an NFA (nondeterministic finite state automata) that recognizes the same language that the regular expression `((A*B | C )* | D )`</li>
-
-
-  <li>Are there any preferences you have for grouping?</li>
-</ol>
