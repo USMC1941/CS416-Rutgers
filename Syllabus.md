@@ -12,7 +12,7 @@
 
 * Students must have taken an undergraduate courses in Systems Programming and Computer Architecture. 
 
-* These pre-requisites translate into CS 214 (which itself requires an undergraduate course in computer architecture, such as CS 211) OR the combination of ECE 331 and ECE 351.
+* These pre-requisites translate into CS 214 (which itself requires an undergraduate course in Computer Architecture, such as CS 211) OR the combination of ECE 331 and ECE 351.
 
 * The programming assignments require good programming skills and a lot of time and effort. 
 
