@@ -243,7 +243,7 @@ Answer: 2 bits
 
   <li>Presume you have an implementation of Quicksort that picks the first element in a list as its pivot. 
   
-  Construct a list of 13 numbers that would make this algorithm run in \\O(n^2)\\ time.</li>
+  Construct a list of 13 numbers that would make this algorithm run in O(n^2) time.</li>
   
  
   <li>Write code to solve the below in O(n) time with one pass over the array. If you can not, provide your best code and state the asymptotic running time.</li>
