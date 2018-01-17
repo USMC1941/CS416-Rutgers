@@ -72,7 +72,7 @@ Rate Proficiency in: [0-9]
 * Stats
 
 Describe Yourself As: [0-9]
-* Programme
+* Programmer
 * Mathematician
 * Engineer
 * Technician
