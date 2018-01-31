@@ -80,6 +80,3 @@ Attached is the skeleton code you should edit.
 * You must not change the main function, but you may alter the signal handler.
 * Note your name and the iLab machine you wrote and tested your code on as comment at the top of the file.
 * Submit your undead source code on Sakai, being sure to note in the comments which machine you ran and tested your code on.
-
-
-  
