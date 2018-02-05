@@ -1,0 +1,55 @@
+
+OSland and how to get out of it.
+
+distinguish USR from SYS:
+- memory
+	if USR can write to SYS memory they can modify how SYS operates or get access to hidden data
+
+- scheduling
+	if USR can control scheduling they can keep SYS from running, or change what it does
+	
+	
+Securing memory:
+	mode register plus a range check
+		if in SYS mode, allow access to OS region
+		if in USR mode, do not allow access to OS region
+		
+Scheduling:
+	firstly, can not access OS instruction area of memory unless in SYS mode
+	USR should not be able to write to mode register or PC
+	> SYS can not be interrupted, USR can
+	
+	
+	
+		
+	
+	
+Exceptional computation:
+Exception - try to execute an unexecutable instruction
+				- involuntary loss of control by USR
+				- switch to SYS mode and modify PC to be entry point for code to handle this case
+
+Trap - USR has SYS do something on its behalf
+				- voluntary loss of control by USR
+				- switch to SYS mode and modify PC to be entry point for code to handle this case
+
+Interrupt - something has occurred that requires SYS attention
+				- involuntary loss of control by USR
+				- switch to SYS mode and modify PC to be entry point for code to handle this case
+
+
+
+ change PC
+ change mode register
+  ... can not be done in any sequence
+   .. so don't(!) - RTE instruction does both operations 'at the same time'
+ 
+ - OS can not be interrupted
+ - USR can
+
+
+
+
+				
+				
+				

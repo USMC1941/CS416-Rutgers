@@ -1,0 +1,29 @@
+
+10011
+
+
+
+Exceptional control:
+Exception:	loss of USR control, involuntary, instruction can not be executed (ERROR state)
+Trap: loss of USR control, voluntary, USR wants SYS to do something on its behalf
+
+
+entry point: well-known location where some code lives
+
+
+coming back from SYS:
+	0. modify mode register
+		- in USR mode
+	XX. change PC
+
+	0. change PC
+		- running USR code ... 
+	(never happens) modify mode register
+
+	CAN NOT be done in any sequence
+	
+	
+
+
+
+

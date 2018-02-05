@@ -1,0 +1,75 @@
+
+I/O:
+PIO vs DMA....
+
+PIO:
+Programmed I/O (input / output)
+- need a program (sequence of instructions) to move data from memory locations, in to registers, and then out to other memory locations
+Good:
+- very low overhead
+Bad:
+- wait for write/read to/from memory-mapped device to occur (often EVEN SLOWER than DRAM ( :^( ))
+- misusing the ALU
+
+DMA:
+Direct Memory Access
+- have devices either talk directly or use a common DRAM area
+Good:
+- ALU is free
+- once DMA is set up it can happen at line rate (!!! ( 8^D ))
+Bad:
+- high initial overhead
+
+Which is better? PIO or DMA?
+dunno ... 
+
+
+Memory Mapping:
+Set aside memory addresses that do not represent accessible locations in DRAM, but instead represent hardware device registers or buffers
+
+--
+
+Polled I/O:
+- check status registers (often via memory mapping)
+- may have many wasted polling cycles
+- may not find out about critical state until you decide to check
+
+Interrupt:
+- device posts an interrupt when some status occurs
+- takes a while to process the interrupt
+- find out about status as soon as possible
+
+many shorter operations, or fewer longer operations?
+
+
+Bus: short-range shared internal data network
+
+PCI bus ... ~32b
+
+PCIE X1 ... 1b
+
+private line can be faster, even if thinner, since there is:
+- no coordination or protcol overhead
+(because no sharing)
+- can move at THAT device's max rate
+(because no sharing)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
