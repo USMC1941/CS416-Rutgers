@@ -1,0 +1,54 @@
+
+Synchronization
+threads are two different execution contexts operating in the SAME address space - NO mem protection
+
+practice in getting some scheduler not to allow other threads to run
+
+doing in OS is straightforward, OS has all the keys and can make itself uninterruptable
+.. but switching in/out is slow
+.. so want a way to do synchronization in an uninterruptable way in userspace ... 
+> "atomic" hardware synchronization instructions
+
+
+test and set -> locks (mutexes) (access to "data"/code segments)
+fetch and increment -> barrier (access to computation/phase of operation)
+
+mutexes are a contrapostive of barriers. ... 
+
+condition variables ... wait on a boolean condition
+
+
+mutexes: (locks)
+ordering
+context
+
+
+semaphore
+0 -> consumers block ...  if on decrement(notify) call, counter is 0, block, else, decrement counter
+1
+2
+3
+4
+5 -> producers block ... if on increment(wait) call, counter is max, block, else, increment coutner
+
+mutex
+0 -> anyone can go
+1 -> everyone must block
+
+
+
+twice-locked mutex ... can not be unlocked ...( **** however .. you can reinit it (  8^((( ))
+(or .. don't be a jerk and just trylock .. (or write better code))
+
+
+
+
+
+
+
+
+
+
+
+
+

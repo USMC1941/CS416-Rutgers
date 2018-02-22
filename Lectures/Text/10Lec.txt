@@ -1,0 +1,49 @@
+
+
+Exam Content:
+Type0: Identification
+Type1: Function
+Type2: Design
+
+---
+
+Virtual Memory
+- the 'thing' that main memory caches
+
+uses:
+- memory allocation:
+	- can stitch together multiple disjunct memory segments in to a seemingly contiguous space
+	- do not have to know state of entire machine and all procs in order to use/get mem as USR
+	- swap file(!) ... allocate more virtual than physical space .. if need to make room, copy a chunk of data to HDD and make sure the Proc that owns it does not run for a while..
+- security
+	- since every memory access requires logic, can make sure USR can't do bad things (unless they trick me! :^()
+- access to devices
+	- map some virtual space to devices .. on access, load data in to a buffer and trap/interrupt to OS to handle device comm.
+
+How to organize it?	
+Segmentation:
+	dynamically-sized chunk
+	you get exactly what you ask for
+	little thought in allocation
+	... but ... 
+	vulnerable to external fragmentation
+	- can create lots of little allocation and leave lots of little non-contiguous gaps
+	need to track each byte (if allocating on byte-granularity)
+	
+Paging:
+	statically-sized chunk
+	you get what the OS thinks you should have
+	can be efficient in allocation (need to only track memory/pagesize)
+	... but ....
+	vulnerable to internal fragmentation
+	- can create lots of little allocations within your page
+	can waste space
+
+Segmented Paging
+dynamic number of fixed-size things( 8^D )
+no external fragmentation (on allocation, not on access)
+(defragmentation - shuffle data in pages so that every allocation is contiguous)
+
+
+
+

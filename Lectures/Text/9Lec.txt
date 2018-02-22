@@ -1,0 +1,45 @@
+
+Scheduling:
+FIFO
+RR
+
+SJF
+SRTF
+
+priority
+lag time to run short jobs
+starvation
+
+
+RR - vary quantum to approx FIFO or SJF
+
+- have mutliple ... i.e. multilevel feedback
+
+handle starvation by increasing priority based on wait time ... 
+  .. eventually even the lowest priority task will bubble up to be highest after not being run long enough
+  
+prioity inversion - when low pri proc gets its runtime it locks something a high pri proc will need... so high pri must wait on low pri
+
+---
+
+Segmented Paging (!!!!!!!one!!!)
+
+
+dynamic number of fixed size things ( 8^D )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
