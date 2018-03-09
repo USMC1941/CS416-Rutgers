@@ -1,0 +1,23 @@
+Scheduling
+	- FIFO
+	- Round Robin
+	- Shortest Job First (SJF)
+	- Shortest Run Time First (SRTF)
+
+Priority
+Lag time to run short jobs
+Starvation
+
+RR
+	- Vary quantum to approximate FIFO or SJF
+	- Have multiple... i.e. multilevel feedback
+
+Handle starvation by increasing priority based on wait time...
+... eventually even the lowest priority task will bubble up to be highest after not being run long enough
+
+Priority Inversion
+	- When low priority process gets its runtime, it may lock something a high priority process will need... so high priority must wait on low priority
+
+Segmented Paging
+
+Dynamic Number of Fixed Sized Things
