@@ -1,0 +1,21 @@
+Memory Mapping
+	- Have some memory address that don't map to main memory, but instead map to other stuff (devices)
+Abstracting hardware/devices - Why?
+	- Unify instructions to talk to it
+		- User does not need to know how to speak to the device that uses it
+	- Put addresses that map to devices in OS-land ... USR can only access them though OS
+
+Device Access:
+	- PIO vs. DMA
+	- PIO
+		- Low/no set up time
+		- Each operation is fairly quick, but needs many
+	- DMA
+		- Medium/high set up time
+		- Operation is EXTREMELY fast once started, need only one (or very few)
+
+Polled vs. Interrupt
+	- Polled
+		- Fairly quick, but if an event takes a long time to occur... burning lots of cycles by just checking
+	- Interrupt
+		- Fairly expensive, but can notify asynchronously.

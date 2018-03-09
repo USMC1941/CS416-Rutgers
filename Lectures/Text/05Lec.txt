@@ -1,0 +1,28 @@
+Processes
+	- OS's abstraction for running code (running instance of a program in the system)
+
+Essentially a struct whose rules enforce different policies:
+	- Local scope
+	- Global scope
+	- Function scope
+	- Process scope
+
+Creating Processes
+	- fork()
+		-> "Duplicate" of current process
+		-> Duplicate the current process' PCB (and give it a new PID)
+			- This "state" persists until one tries to write to the Process' space
+	- exec()
+		-> Replace the current context with new code
+		-> Old process image is reaped and new one is build for new code
+	- Orphan Process
+		-> Process whose parent no longer exists
+	- Zombie Process
+		-> Process whose executable code is exhausted, has sent the exit signal but has not been wait()ed on (parent exists)
+	- Zombie Orphan
+		-> AND Above
+
+	In case of Orphan/Zombie, call init(scheduler)
+		-> Have init be promoted to process' parent, will wait on it so it can be reaped
+
+TLB: Translation Lookaside Buffer

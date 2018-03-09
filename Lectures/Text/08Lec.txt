@@ -1,0 +1,91 @@
+Exam 0 - 2018-03-01
+
+Synchronization
+	- Consistency
+	- Operations on data require making multiple copies
+	- Once copied into local state, global data can become inconsistent
+	- Cannot allow user code to lock out other code without surrendering scheduling to the user
+	- Need hardware support - in particular - "atomic" functions that can read, modify and write shared state "at once"
+
+Hardware Instructions
+	- Test and Set
+	- Fetch and Increment
+	- Compare and Swap
+
+Constructs
+	- Mutexes (locks)			Synch on Data
+	- Barriers					Synch on Computation
+	- Condition Variables	Synch on events
+
+	- Monitor
+		-> OO synch supervisor that allocates resources
+		-> Mutual exclusion is dangerous
+
+	- Deadlock
+		-> Four Conditions:
+			1. Mutual Exclusion
+			2. Hold and Wait
+			3. No-Preemption
+			4. Circular Wait	<-- Global ordering on locking, rising/falling permission phases.
+
+	- Live-lock
+		-> Can compute , but will never get the required resource
+
+	- Starvation
+		-> Will never get the required resource
+
+	- Why monitors given above?
+		-> May have a plan of resource priority for threads.
+		-> Sometimes, global ordering and whatnot is not possible based on what the resources are or how the system works
+
+	- Semaphore
+		-> Insensitive to identity
+		-> Insensitive to ordering
+			-> Block on both ends ... on post to make value and wait on 0
+
+------------
+Scheduling
+	- Banker's Algorithm
+		-> Need some future knowledge ... all processes must tell you how much of a resource they need, at max
+
+	- Know how much of X there is to be allocated
+	- Know how much of X every process needs, at max
+	- For all processes, make sure there is a chain of allocations that will allow:
+		-> Al least one process to reach its max
+		-> Be run to completion
+		-> Have resources reclaimed and added to the available pool
+
+Time:
+	- FIFO - run until done in dispatch order
+		+: Easy
+		-: Could cause short, important processes to wait for long, unimportant processes
+		(Can clobber turnaround time)
+	- Round Robin - Everyone gets an equal amount of runtime
+		+: Don't have to wait for process to finish to get to run(Good for response time)
+		-: Do have to wait for all other processes to take their time
+	- Shortest jobs will finish first (even if they take a long time to do in a loaded system)
+
+To Allocate Resources:
+	1st, dumbest strategy with no knowledge
+	2nd, best strategy with full knowledge of the future
+	then... try to approx best strategy with worst strategy with full knowledge of the past
+
+SJF - Shortest jobs first (non-preemptive)
+	+:
+		-> Good response time
+		-> Middling turnaround time
+		-> Trying to be optimal
+	-:
+		-> No notion of priority
+		-> Could starve out longer processes
+
+SRTF - Jobs with least remaining time go first (preemptive)
+	- Still with the starvation risk
+
+Round Robin
+	- Can tune the quantum.
+	- What if Quantum is very small?
+		- The smaller the quantum, the closer to SRTF (SJF)
+	- What if Quantum is very large?
+		- The larger the quantum, the closer to FIFO
+	- Overhead of context switches... so need to balance cost of switch against gain of another process running

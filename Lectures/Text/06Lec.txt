@@ -1,0 +1,69 @@
+Processes
+	- OS's abstraction for running code
+	- Stack
+		- Execution Context
+		- Activation Record
+			-> Currently active stack frame
+			-> Function Call
+		- Enforces name-spaces through access rules
+	- Heap
+		- Dynamically allocated memory that can be referenced by all stack frames
+	- Code
+
+	PCB (Process Control Block)
+		- OS meta data struct with information necessary to schedule/maintain a process and its resources
+	fork()
+		- "Duplicate" current process
+		- Not a duplicate but a clone. The clone call creates a new PCB that references the same process
+		- Child tells itself apart by return value of fork()
+			-> 0 on child
+			-> Non-0 on parent
+		- On attempt by child to write to process image, a new (actual duplicate) process image needs to be built
+	exec()
+		- Replaces a current process with new code
+	Orphan
+		- Process whose parent is not in the system
+	Zombie
+		- Process who has consumed all executable code, has returned (sent exit() signal), but whose parent has not yet wait()ed on it yet
+
+
+--------
+
+TA 										TB
+- get current value
+- modify current value
+- write new value
+
+											- get C
+											- mod it
+											- write it
+
+
+
+TA 										TB
+- get current value
+- current value -5
+
+
+											- get C
+											- current +10
+											- write it
+
+- write new value
+
+--------
+
+
+
+Scheduling
+	- lock/unlock
+	- Create new thread
+		-> Update state ... yield
+	- Exit thread
+		-> Update state ... yield
+	- Join thread
+		-> Update state ... yield
+	- Yield
+		-> The scheduler
+	- Signal Handler
+		-> Yield
