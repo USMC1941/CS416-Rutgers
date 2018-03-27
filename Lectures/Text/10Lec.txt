@@ -1,5 +1,3 @@
-
-
 Exam Content:
 Type0: Identification
 Type1: Function
@@ -20,16 +18,16 @@ uses:
 - access to devices
 	- map some virtual space to devices .. on access, load data in to a buffer and trap/interrupt to OS to handle device comm.
 
-How to organize it?	
+How to organize it?
 Segmentation:
 	dynamically-sized chunk
 	you get exactly what you ask for
 	little thought in allocation
-	... but ... 
+	... but ...
 	vulnerable to external fragmentation
 	- can create lots of little allocation and leave lots of little non-contiguous gaps
 	need to track each byte (if allocating on byte-granularity)
-	
+
 Paging:
 	statically-sized chunk
 	you get what the OS thinks you should have
@@ -43,7 +41,3 @@ Segmented Paging
 dynamic number of fixed-size things( 8^D )
 no external fragmentation (on allocation, not on access)
 (defragmentation - shuffle data in pages so that every allocation is contiguous)
-
-
-
-

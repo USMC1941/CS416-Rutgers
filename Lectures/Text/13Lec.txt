@@ -1,7 +1,7 @@
 
 mean 33.2294117647
 -> 	55.38235294%
-STD 9.5386285269	
+STD 9.5386285269
 -> 15.83333..%
 
 
@@ -14,7 +14,7 @@ STD 9.5386285269
 
 ----
 
-Memory: 
+Memory:
 --
 
 IO!:
@@ -26,7 +26,7 @@ open("./logfile", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR )
 
 chmod:
 chmod <type> +|- <permission> <file>
-	
+
 type:	permission:
 u			r
 g			w
@@ -40,33 +40,11 @@ chmod <code> <file>
 - rwx --- ---
   000 000 000
   110 000 000
-   6     0     0 
-  
-  
- fprintf( STDOUT, "%d" , p);   =>    printf(  "%d" , p); 
-  
-   fprintf( STDERR, "%s" , strerror(errno) ); 
+   6     0     0
+
+
+ fprintf( STDOUT, "%d" , p);   =>    printf(  "%d" , p);
+
+   fprintf( STDERR, "%s" , strerror(errno) );
 
   write(STDOUT, buff, length);
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

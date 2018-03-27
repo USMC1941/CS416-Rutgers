@@ -1,0 +1,35 @@
+)
+Definitional
+Functional
+Design (Mastery/Transfer)
+)
+
+
+
+IO:
+
+(virtualize a device as a memory location)
+
+IO space is heterogenous like all crazy ...
+
+one abstraction to rule them all - file descriptors...
+- open
+- close
+- read
+- write
+
+blocking and non-blocking:
+blocking: program is either not scheduled or only NO-OPs when scheduled
+non-blocking: program (function) returns immediately (with status info) when next scheduled - will not allow a timeslice to pass
+
+synchronous and asynchronous:
+sync: does not return until device has completed operation
+async: returns immediately, and operation is completed at some point in the future, process is signalled when operation is complete
+
+buffered and non-buffered:
+buffer: copy data to some intermediate memory
+non-buffered: ... don't
+
+
+read(fd, buf, 10);
+read(fd, buf, 10);

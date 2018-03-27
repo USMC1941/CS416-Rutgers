@@ -1,0 +1,54 @@
+
+Drive Access:
+FCFS
+	+ easy to write
+	- st00pid (FIFO ... qed)
+
+SSTF
+	+ good average seek time/response time
+	- may starve out some longer operations
+	(fairly natural appeal/common)
+
+C-SCAN
+	+ Do SCAN until hitting maximal (or minimal end), then immediately return to other side without servicing requests along the way
+	- low(er) MTTF (Mean Time to Failure), but significantly better worst cases
+
+SCAN (elevator algorithm)
+	+ high(er) MTTF
+	- higher average wait due to bad worst cases
+
+C-LOOK
+	+ Do SCAN until servicing maximal request in one direction, then reverse
+	- somewhat lower MTTF, but better worst cases (lower average access)
+
+
+--------------
+
+
+RAID:
+Redundant Array of Inexpensive Disks
+
+
+A:	0101
+B:	1110
+C:	1001
+X:	0010
+
+
+
+Data:	0101 1110 1001
+
+
+
+int a = 2;
+int b = 3;
+
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+
+
+			0123  4567
+			   012 3456 789
+Data:	0101 1110 1001
+X: 0010

@@ -1,0 +1,50 @@
+
+Asst1: 85.69/100
+
+
+64K / 4K -> 16 -> 2^4 * 2^5 -> 2^9
+
+8MB -> 2^23
+
+4K -> 2^12
+
+2K
+
+
+|___0___|___________
+^  ^
+|  |
+
+
+
+[M]_________|_____[M]____[M]________
+    ^
+
+
+----------------------
+
+IO:
+nonblocking, blocking
+buffered, unbuffered
+synchronous, asynchronous
+interrupt, polling
+
+
+
+
+Disks
+(secondary storage)
+
+.. really slow (often)
+cheap per byte
+
+seek time - most disk latency is finding the start of the data needed on the drive
+
+if most time is spent in seek, and drives are very slow, then optimizing seek will result in big benefits...
+
+
+OS:
+	- puts logical organization of files, directories, whatever on top of drive's disk blocks
+
+drive:
+	- fetch/write disk blocks as fast as possible (and as resiliently as possible)
