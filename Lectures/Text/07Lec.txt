@@ -1,24 +1,24 @@
 
 Synchronization
-threads are two different execution contexts operating in the SAME address space - NO mem protection
+threads are two different execution contexts operating in the SAME address space - NO memory protection
 
 practice in getting some scheduler not to allow other threads to run
 
-doing in OS is straightforward, OS has all the keys and can make itself uninterruptable
+doing in OS is straightforward, OS has all the keys and can make itself uninterruptible
 .. but switching in/out is slow
-.. so want a way to do synchronization in an uninterruptable way in userspace ... 
+.. so want a way to do synchronization in an uninterruptible way in user space ...
 > "atomic" hardware synchronization instructions
 
 
-test and set -> locks (mutexes) (access to "data"/code segments)
+test and set -> locks (Mutexes) (access to "data"/code segments)
 fetch and increment -> barrier (access to computation/phase of operation)
 
-mutexes are a contrapostive of barriers. ... 
+Mutexes are a contrapositive of barriers. ...
 
 condition variables ... wait on a boolean condition
 
 
-mutexes: (locks)
+Mutexes: (locks)
 ordering
 context
 

@@ -21,7 +21,7 @@ Bad:
 - high initial overhead
 
 Which is better? PIO or DMA?
-dunno ... 
+dunno ...
 
 
 Memory Mapping:
@@ -49,7 +49,7 @@ PCI bus ... ~32b
 PCIE X1 ... 1b
 
 private line can be faster, even if thinner, since there is:
-- no coordination or protcol overhead
+- no coordination or protocol overhead
 (because no sharing)
 - can move at THAT device's max rate
 (because no sharing)

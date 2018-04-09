@@ -17,13 +17,7 @@ coming back from SYS:
 	XX. change PC
 
 	0. change PC
-		- running USR code ... 
+		- running USR code ...
 	(never happens) modify mode register
 
 	CAN NOT be done in any sequence
-	
-	
-
-
-
-

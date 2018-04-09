@@ -8,9 +8,9 @@ Design (Mastery/Transfer)
 
 IO:
 
-(virtualize a device as a memory location)
+(Virtualize a device as a memory location)
 
-IO space is heterogenous like all crazy ...
+IO space is heterogeneous like all crazy ...
 
 one abstraction to rule them all - file descriptors...
 - open
