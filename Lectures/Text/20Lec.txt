@@ -1,0 +1,4 @@
+Distributed System: Multiple machines (hardware) that is:
+	-> Interconnected
+	-> Cooperate
+	* Hides the fact that distribution is happening (logically/semantically presented as a single/monolithic system)

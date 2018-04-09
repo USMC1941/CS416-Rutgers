@@ -1,0 +1,22 @@
+File Systems:
+Resolving representation and realities of storage
+
+physicality ... matters
+- alter the way that representations are encoded to exploit behavior of the underlying mechanisms
+
+contiguous - nice to read/write
+					.. but .. incurs fragmentation issues
+
+linked - no fragmentation issues (at least external)
+	      - but ... lose benefits of random access that in-order sequential storage breeds
+				 .... and ... working against the physicality of HDD
+
+:^(
+--> there is nothing about linked allocation that is mutually exclusive with contiguous
+ ... contiguity is a feature of location/allocation
+ ... linking is a feature of organization/addressing
+
+indexing - store all metadata in one place rather than seeking from block to block to find it
+			... can restore a measure of random access to structures that had been linked
+			... necessarily requires more space/two lookups
+:^)

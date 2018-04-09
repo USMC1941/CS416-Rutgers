@@ -1,0 +1,34 @@
+RAID
+
+Logical vs. Physical organization
+	- Logical: Software representation
+	- Physical: Hardware
+
+
+1 to M ... M to 1 ... M to M
+
+
+Multiple physical to 1 logical drive... organizations thereof
+	1. Resilience (can be practically implemented using redundancy)
+	0. Performance (bandwidth is multiplicative)
+
+RAID:
+0. Striping (100% Performance)
+1. Mirroring (100% Resilience)
+2. 1-bit striping and ECC (log_2(n) check disks, rest for performance)
+3. 1-bit striping and XOR disk (1 check disk)
+4. RAID3, but wider stripes
+5. RAID4, but interleave check stripes across disks to amortize writes
+6. RAID5, but with offset XORs for additional redundancy and to preserve the XOR relation across all corresponding stripes
+
+SCSI
+PCI
+
+------------
+
+open:
+fd > 0: can read/write from/to it
+fd == -1: can not read/write from/to it
+
+read(fd, buf, 10);
+read(fd, buf, 10);

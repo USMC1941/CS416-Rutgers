@@ -1,0 +1,46 @@
+Disk vs. disc
+	-> Disk: Computer memory
+	-> Disc: Physical flat circle
+
+File Systems:
+	-> Logical/semantic vs. physical organization
+
+Indexing
+	-> Address of all disk blocks that make up some logical structure are stored in the same metadata structure
+	+ Can seek directly to a random block (and linking benefits)
+	- Even more/larger metadata, any change to file will require an update of this structure
+
+Contiguous
+	-> All disk blocks that make up some logical structure are sequential
+	+ Fast access for HDDs, lower metadata overhead, fairly straightforward to allocate under segmentation
+	- Fragmentation
+
+Linking
+	-> All disk blocks that make up some logical structure 'points to' the next
+	+ No loss of space due to fragmentation issues
+	- More metadata, more seek time for HDDs, can incur a lot of seek time to find the Nth block
+
+Disks are slow. Buffer writes then returns once data is in buffer. However, if power goes out, high risk of failure.
+
+Journaling
+	-> How to write quickly to the HDD?
+		- Seek time is most of the latency so designate some easily seeking spot that I can quickly drop pending writes to
+		- Once write is in the "Journal", it is as good as having occurred
+
+Maintaining Invariance
+	-> Good time: Write buffer to journal, process journal, write has occurred
+	-> Bad time: Write buffer to journal, lose power, once you know how to talk to stable storage - process journal if any entries are on it, before booting OS, write has occurred, OS boots
+
+Synchronous
+	-> Immediate access to Hardware Buffer. Does not return until in place
+Asynchronous
+	-> Schedule job to be processed in the background and be notified when it's done
+
+Buffered
+	-> Can stop on the way to the device... often looks good, but can be ugly (buffer problems)
+Unbuffered
+	-> Can not stop on the way to the device... but can be cached on device
+
+Character: Buffered
+Block: Unbuffered
+Network
