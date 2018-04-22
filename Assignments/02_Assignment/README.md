@@ -34,13 +34,16 @@ You should add a macro definition to transform all calls to `malloc()` and `free
 Since your thread library can be aware of your memory manager, it can call your own memory functions directly:
 
 ```c
-int * aptr = (int*)myallocate(5 * sizeof(int), __FILE__, __LINE__, LIBRARYREQ);
+int* aptr = (int*)myallocate(5 * sizeof(int), __FILE__, __LINE__, LIBRARYREQ);
 ```
 Since you can call your memory functions directly from the thread library, you can call them with a different library-level constant so that your memory manager can know the request is coming from the thread library itself, rather than from a thread, and can treat it differently.
 
 You should reserve memory for a thread on the granularity of a system page.
 
-You can discover the system page size with `sysconf( _SC_PAGE_SIZE)`.
+You can discover the system page size with:
+```c
+sysconf( _SC_PAGE_SIZE)
+```
 
 All `malloc` requests from the same thread should be served from the same memory page, until they fill that page.
 
@@ -90,7 +93,7 @@ Your memory manager will need to determine which of the thread's pages correspon
 You can get this address if you use the `SIGINFO` flag with the `sigaction` signal handler:
 ```c
 static void handler(int sig, siginfo_t *si, void *unused) {
-  printf("Got SIGSEGV at address: 0x%lx\n",(long) si->si_addr);
+	printf("Got SIGSEGV at address: 0x%lx\n",(long) si->si_addr);
 }
 ...
 
