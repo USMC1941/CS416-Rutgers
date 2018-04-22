@@ -25,40 +25,56 @@ Build a library named `my_pthread_t.h` that contains implementations of the prot
 Pthreads that are waiting for a mutex should be moved to the waiting queue. Threads that can be
 scheduled to run should be in the running queue.
 
-* `int my_pthread_create(my_pthread_t * thread, pthread_attr_t * attr, void *(*function)(void*), void * arg);`
+```c
+int my_pthread_create(my_pthread_t * thread, pthread_attr_t * attr, void *(*function)(void*), void * arg);
+```
   * Creates a `pthread` that executes function.
   * Attributes are ignored, `arg` is not.
 
-* `int my_pthread_yield();`
+```c
+int my_pthread_yield();
+```
   * Explicit call to the `my_pthread_t` scheduler requesting that the current context can be swapped out and another can be scheduled if one is waiting.
 
-* `void pthread_exit(void *value_ptr);`
+```c
+void pthread_exit(void *value_ptr);
+```
   * Explicit call to the `my_pthread_t` library to end the pthread that called it.
   * If the value_ptr isn't `NULL`, any return value from the thread will be saved.
 
-* `int my_pthread_join(my_pthread_t thread, void **value_ptr);`
+```c
+int my_pthread_join(my_pthread_t thread, void **value_ptr);
+```
   * Call to the `my_pthread_t` library ensuring that the calling thread will not continue execution until the one its references exits.
   * If value_ptr is not `NULL`, the return value of the exiting thread will be passed back.
 
 > Mutex note: Both the unlock and lock functions should be very fast. If there are any threads that are meant to compete for these functions, my_pthread_yield should be called immediately after running the function in question. Relying on the internal timing will make the function run slower than using yield.
 
-* `int my_pthread_mutex_init(my_pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr);`
+```c
+int my_pthread_mutex_init(my_pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr);
+```
   * Initializes a `my_pthread_mutex_t` created by the calling thread.
   * Attributes are ignored.
 
-* `int my_pthread_mutex_lock(my_pthread_mutex_t *mutex);`
+```c
+int my_pthread_mutex_lock(my_pthread_mutex_t *mutex);
+```
   * Locks a given mutex, other threads attempting to access this mutex will not run until it is unlocked.
 
-* `int my_pthread_mutex_unlock(my_pthread_mutex_t *mutex);`
+```c
+int my_pthread_mutex_unlock(my_pthread_mutex_t *mutex);
+```
   * Unlocks a given mutex.
 
-* `int my_pthread_mutex_destroy(my_pthread_mutex_t *mutex);`
+```c
+int my_pthread_mutex_destroy(my_pthread_mutex_t *mutex);
+```
   * Destroys a given mutex.
   * Mutex should be unlocked before doing so.
 
 ---
 
-It is strongly suggested that you investigate the system library `ucontext.h`.
+It is strongly suggested that you investigate the system library `<ucontext.h>`.
 * It has a series of commands to make, swap and get the currently running context.
 * When a context is running, it will continue running until it completes.
 * In order to interrupt the current context you should set an interrupt time (`setitimer`) in 25ms quanta.
