@@ -40,15 +40,15 @@ int my_pthread_yield();
 void pthread_exit(void *value_ptr);
 ```
   * Explicit call to the `my_pthread_t` library to end the pthread that called it.
-  * If the value_ptr isn't `NULL`, any return value from the thread will be saved.
+  * If `value_ptr` isn't `NULL`, any return value from the thread will be saved.
 
 ```c
 int my_pthread_join(my_pthread_t thread, void **value_ptr);
 ```
   * Call to the `my_pthread_t` library ensuring that the calling thread will not continue execution until the one its references exits.
-  * If value_ptr is not `NULL`, the return value of the exiting thread will be passed back.
+  * If `value_ptr` is not `NULL`, the return value of the exiting thread will be passed back.
 
-> Mutex note: Both the unlock and lock functions should be very fast. If there are any threads that are meant to compete for these functions, my_pthread_yield should be called immediately after running the function in question. Relying on the internal timing will make the function run slower than using yield.
+> Mutex note: Both the unlock and lock functions should be very fast. If there are any threads that are meant to compete for these functions, `my_pthread_yield` should be called immediately after running the function in question. Relying on the internal timing will make the function run slower than using `my_pthread_yield`.
 
 ```c
 int my_pthread_mutex_init(my_pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr);
@@ -112,7 +112,7 @@ You should write a suite of benchmarking functions to test your scheduler with t
 
 Your code should take the form of a `my_pthread.h` header and associated `my_pthread.c` library.
 * Your header file should have a series of macros that replaces all calls to pthread and mutex function with your own functions.
-  * A simple way to delineate them is to prepend “`my_`” to the function names, e.g. `my_pthread_create`.
+  * A simple way to delineate them is to prepend "`my_`" to the function names, e.g. `my_pthread_create`.
 * You should support the same API as `pthread`.
   * In particular, your functions should take the same number and type of parameters as `pthread`, with the exception of `pthread` itself.
   * For instance, `my_pthread_create` should take the address of a `my_pthread_t`, not a `pthread_t`.
