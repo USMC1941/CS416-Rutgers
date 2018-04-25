@@ -1,0 +1,59 @@
+Stateful/Stateless
+	-> Stateful
+		- Remember stuff
+		- Smaller messages
+		- Send more often
+		- Optimizations
+		- More fragile
+	-> Stateless
+		- Little/no memory
+		- Larger messages
+		- Send less often
+		- Future is a mystery
+		- More robust (can reboot because no metadata)
+
+Ghosts
+	-> Replications of state
+	-> Voting with... to forum a quorum...
+		- If you can form a read quorum with ghosts, then nodes that come back up cam resynchronize by reading all resources
+
+DNS
+	-> Root: edu, com, org, ...
+	-> Top-level: rutgers, google, att, ...
+	-> Authoritative: math, cs, www, ...
+	-> Non-authoritative: Cached locally (or close by)
+
+Namespace
+	-> Named list of names that they themselves may be duplicates of other names, but do not collide as the two lists have different top-level outward-facing names
+
+UDP vs. TCP
+	-> Flow control: Give RCVR some mechanism to adjust rate of send
+	-> Reliable delivery: Require RCVR to send ACK (acknowledgment) message on received
+	-> Retransmission: Resend missed messages on timeout
+	-> Congestion control: Throttle send based on network capacity (rate of slowest link)
+
+
+Circuit Switching (DMA, interrupt driven I/O, stateful)
+	-> Longer set up time
+	-> Fast/dedicated transmission once it's set up
+
+Packet Switching (PIO, polled I/O, stateless)
+	-> Short/no set up time
+	-> Slower/contention/shared transmission for each chunk
+
+
+OSI Protocols
+
+Transport
+	TCP: Stateful
+	UDP: Stateless
+
+Network
+	IP: Stateless(ish)
+
+Data link
+	Stateful (802.11, 802.3, 802.15.4)
+
+PHY
+	Stateless(ish)
+	GSM (More stateful)

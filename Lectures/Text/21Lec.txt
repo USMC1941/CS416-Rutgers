@@ -1,0 +1,33 @@
+Distributed Systems
+	-> Multiple systems (autonomous or special-purpose) that cooperate to form a new system... in such a manner that the cooperate/differentiation is hidden
+
+	-> Problems
+		- Physical partitioning
+		- Communication:
+			-> Latency/state/consistency/global knowledge (don't have it)/process status
+			-> Internet (best effort, store-and-foreword, unregulated, self-organizing)
+
+	-> Security
+		- Fault Model
+			-> Fail-stop: Fail loudly (return -1, set errno)
+			-> Crash: Fail silently
+			-> Byzantine: ???
+
+	-> Benefits
+		- Cheaper
+		- Load balancing
+		- Scalable
+		- Parallelization
+		- Centralization of resources (or dumb terminals or lightweight access)
+		- Fault tolerance
+		- Physical distribution
+
+	-> Summary
+		- Accessibility
+		- Redundancy
+		- Performance
+
+Remote Procedure Call (RPC)
+	-> Hardware Partitioning
+		- Different virtual address spaces: Need to serialize/flatten all DS into a sequence of types in the generic language
+		- Machine representation: Everyone translates to/from some maximally-generated 'language'

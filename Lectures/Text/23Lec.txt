@@ -1,0 +1,57 @@
+Distributed Systems
+	-> Distributing Files
+
+	-> Voting Protocol: Synchronizing access across copies of the same resource
+		- Read: Data does not change while being read
+		- Write: Data does not change while being written
+		- i.e. We want something at least partially transactional
+
+	-> Establish read/write quorums
+
+	Nr + Nw > N
+
+	3(R) + 4(W) > 6
+
+	1(R) + 6(W) > 6
+
+	5(R) + 2 (W) > 6
+
+	-> "Voting with ghosts"
+		- If enough nodes are down so that a quorum cannot be formed... pretend.
+		- Create "ghost nodes" that are essentially virtual duplicates of the current running nodes
+		- Can now create read quorums
+		- Can now create write quorums (?)
+			-> This may not happen. We can cache (Journal) updates, but do not expose modification until enough real (non-ghost) nodes exist to form a write quorum
+
+	-> Managing file state
+		- Read only (immutable files): No such thing as "write," only "make new file with same name"... i.e. replace
+		- Session: User... cache writes locally, then sends all back at once on close... no interleaving of updates
+		- Transactional: User can "lock" a file on open... no other access from other users allowed
+		- UNIX semantics: "Global ordering on reads and writes" - Users can interleave partial updates/reads.
+
+
+	-> Stateful/stateless
+		- Stateful (Computation)
+			+ Usually results in smaller messages
+			+ Less work/storage client side
+			- Server does need to remember things
+			- Less Predictability
+			- Will have metadata to screw up/update
+			- Rebooting is always never an option
+
+		- Stateless (Continuation)
+			+ Server does not need to remember anything
+			+ Predictability
+			+ No metadata to screw up/update
+			+ Rebooting is always an option
+			- Usually results in larger messages
+			- More work/storage client side
+
+OSI protocols:
+	1. Physical
+	2. Data Link
+	3. Network
+	4. Transport
+	5. Session
+	6. Presentation
+	7. Application

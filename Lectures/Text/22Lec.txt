@@ -1,0 +1,10 @@
+Preserving state/synchronizing across a distributed system: ACID
+	-> Atomicity: Update either happens or does not
+
+	-> Consistency: System invariants are preserved
+		- Read: Data does not change "magically" - on read, no one else will change the value you have until you are done using it
+		- Write: Data does not change "magically" - on write, no one will change the value you have written until you are done using it
+
+	-> Isolation: One update does not change another (concurrently happening)
+
+	-> Durability: Once written, an update does not disappear
