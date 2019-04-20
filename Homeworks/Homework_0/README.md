@@ -91,13 +91,12 @@ int main() {
 	return 0;
 }
   ```
- a) Compiler Error
- 
-b) Depends on the compiler
-
-c) 5
-
-d) none of above
+<ol type="a">
+  <li>Compiler Error</li>
+  <li>Depends on the compiler</li>
+  <li>5</li>
+  <li>none of above</li>
+</ol>
  
   <li>Predict the output of this snippit: </li>
   
@@ -117,14 +116,12 @@ int main() {
 }
 
   ```
-  
-a) It matters
-
-b) It doesn’t matter
-
-c) Run time error
-
-d) Nothing
+<ol type="a">
+  <li>It matters</li>
+  <li>It doesn’t matter</li>
+  <li>Run time error</li>
+  <li>Nothing</li>
+</ol>
   
   <li>How many times is Hello world printed by the code snippit below?</li>
   
@@ -135,13 +132,12 @@ d) Nothing
 	printf("Hello world\n");
 }
   ```
-a) 1
-
-b) 2
-
-c) 4
-
-d) 8
+<ol type="a">
+  <li>1</li>
+  <li>2</li>
+  <li>4</li>
+  <li>8</li>
+</ol>
 
   <li>What is the output of this C code?</li>
   
@@ -155,15 +151,12 @@ int main() {
 	printf("%d\n", z++);
 }
   ```
-a) 1
-
-b) 5
-
-c) 6
-
-d) 7
-
-  
+<ol type="a">
+  <li>1</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+</ol>
   
   <li>What is the output of this C code?</li>
   
@@ -176,13 +169,13 @@ int main() {
 	printf("%d\n", z);
 }
   ```
-a) 2
 
-b) 4
-
-c) 20
-
-d) Compile time error
+<ol type="a">
+  <li>2</li>
+  <li>4</li>
+  <li>20</li>
+  <li>Compile time error</li>
+</ol>
  
   <li>What is the output of this C code?</li>
   
@@ -201,14 +194,12 @@ int main() {
 	}
 }
   ```
-  
-a) yes
-
-b) no
-
-c) Runtime error
-
-d) Compile time error
+<ol type="a">
+  <li>yes</li>
+  <li>no</li>
+  <li>Runtime error</li>
+  <li>Compile time error</li>
+</ol>
 
   <li>What is the output of this C code?</li>
   
@@ -220,14 +211,12 @@ int main() {
 	printf("%d %d %d", x == 35, x = 50, x > 40);
 }
   ```  
-  
-a) 1 50 1
-
-b) 0 50 0
-
-c) Runtime error
-
-d) Compile time error
+<ol type="a">
+  <li>1 50 1</li>
+  <li>0 50 0</li>
+  <li>Runtime error</li>
+  <li>Compile time error</li>
+</ol>
 
   <li>You have two numbers, A and B. 
   

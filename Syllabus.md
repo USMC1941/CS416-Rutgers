@@ -22,7 +22,7 @@
 
 
 ## Textbook:
-* [“Operating Systems: Three Easy Pieces” - Remzi Arpaci-Dusseau and Andrea Arpaci-Dusseau](http://pages.cs.wisc.edu/~remzi/OSTEP)
+* ["Operating Systems: Three Easy Pieces" - Remzi Arpaci-Dusseau and Andrea Arpaci-Dusseau](http://pages.cs.wisc.edu/~remzi/OSTEP)
     
 ## Evaluation
 
@@ -42,3 +42,12 @@
   * You should not, however, copy the actual code for programming assignments, or copy the wording for written homeworks. 
   * This will be considered cheating and will be punished severely! 
   * Please review the CS department's cheating policy to be sure you do not have difficulties.
+
+## GDB Help
+
+* [8 gdb tricks you should know](https://blogs.oracle.com/linux/8-gdb-tricks-you-should-know-v2)
+* [Debugging with GDB](https://sourceware.org/gdb/onlinedocs/gdb/)
+  * [Debugging with GDB: Inspecting Registers](https://sourceware.org/gdb/onlinedocs/gdb/Registers.html)
+  * [Debugging with GDB: Machine Code](https://sourceware.org/gdb/onlinedocs/gdb/Machine-Code.html)
+  * [Debugging with GDB: Stack Frame Selecton](https://sourceware.org/gdb/onlinedocs/gdb/Selection.html)
+* [RMS's gdb Debugger Tutorial](http://www.unknownroad.com/rtfm/gdbtut/)
