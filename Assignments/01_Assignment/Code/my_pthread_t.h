@@ -4,7 +4,7 @@
 
 // name:
 // username of iLab:
-// iLab Server: 
+// iLab Server:
 #ifndef MY_PTHREAD_T_H
 #define MY_PTHREAD_T_H
 
@@ -19,26 +19,27 @@
 
 typedef uint my_pthread_t;
 
-typedef struct threadControlBlock {
-	/* add something here */
-} tcb; 
+typedef struct threadControlBlock
+{
+   /* add something here */
+} tcb;
 
 /* mutex struct definition */
-typedef struct my_pthread_mutex_t {
-	/* add something here */
+typedef struct my_pthread_mutex_t
+{
+   /* add something here */
 } my_pthread_mutex_t;
 
 /* define your data structures here: */
 
 // Feel free to add your own auxiliary data structures
 
-
 /* Function Declarations: */
 
 /* create a new thread */
-int my_pthread_create(my_pthread_t * thread, pthread_attr_t * attr, void *(*function)(void*), void * arg);
+int my_pthread_create(my_pthread_t *thread, pthread_attr_t *attr, void *(*function)(void *), void *arg);
 
-/* give CPU pocession to other user level threads voluntarily */
+/* give CPU possession to other user level threads voluntarily */
 int my_pthread_yield();
 
 /* terminate a thread */

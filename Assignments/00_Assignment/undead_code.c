@@ -14,26 +14,22 @@
 
 void segment_fault_handler(int signum)
 {
-	printf("I am slain!\n");
+   printf("I am slain!\n");
 
-	//Use the signnum to construct a pointer to flag on stored stack
-	//Increment pointer down to the stored PC
-	//Increment value at pointer by length of bad instruction
-
-	
-	
+   //Use the signnum to construct a pointer to flag on stored stack
+   //Increment pointer down to the stored PC
+   //Increment value at pointer by length of bad instruction
 }
-
 
 int main()
 {
-	int r2 = 0;
+   int r2 = 0;
 
-	signal(SIGSEGV, segment_fault_handler);
+   signal(SIGSEGV, segment_fault_handler);
 
-	r2 = *( (int *) 0 );
-	
-	printf("I live again!\n");
+   r2 = *((int *)0);
 
-	return 0;
+   printf("I live again!\n");
+
+   return 0;
 }
