@@ -16,23 +16,26 @@
 
 int diskfile = -1;
 
-void disk_open(const char* diskfile_path)
+void disk_open(const char *diskfile_path)
 {
-    if(diskfile >= 0){
-	return;
+    if (diskfile >= 0)
+    {
+        return;
     }
-    
-    diskfile = open(diskfile_path, O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
-    if (diskfile < 0) {
-	perror("disk_open failed");
-	exit(EXIT_FAILURE);
+
+    diskfile = open(diskfile_path, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+    if (diskfile < 0)
+    {
+        perror("disk_open failed");
+        exit(EXIT_FAILURE);
     }
 }
 
 void disk_close()
 {
-    if(diskfile >= 0){
-	close(diskfile);
+    if (diskfile >= 0)
+    {
+        close(diskfile);
     }
 }
 
@@ -44,11 +47,12 @@ void disk_close()
 int block_read(const int block_num, void *buf)
 {
     int retstat = 0;
-    retstat = pread(diskfile, buf, BLOCK_SIZE, block_num*BLOCK_SIZE);
-    if (retstat <= 0){
-	memset(buf, 0, BLOCK_SIZE);
-	if(retstat<0)
-	perror("block_read failed");
+    retstat = pread(diskfile, buf, BLOCK_SIZE, block_num * BLOCK_SIZE);
+    if (retstat <= 0)
+    {
+        memset(buf, 0, BLOCK_SIZE);
+        if (retstat < 0)
+            perror("block_read failed");
     }
 
     return retstat;
@@ -61,10 +65,9 @@ int block_read(const int block_num, void *buf)
 int block_write(const int block_num, const void *buf)
 {
     int retstat = 0;
-    retstat = pwrite(diskfile, buf, BLOCK_SIZE, block_num*BLOCK_SIZE);
+    retstat = pwrite(diskfile, buf, BLOCK_SIZE, block_num * BLOCK_SIZE);
     if (retstat < 0)
-	perror("block_write failed");
-    
+        perror("block_write failed");
+
     return retstat;
 }
-

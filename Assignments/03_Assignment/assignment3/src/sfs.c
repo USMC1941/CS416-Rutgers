@@ -29,7 +29,6 @@
 
 #include "log.h"
 
-
 ///////////////////////////////////////////////////////////
 //
 // Prototypes for all these functions, and the C-style comments,
@@ -50,7 +49,7 @@ void *sfs_init(struct fuse_conn_info *conn)
 {
     fprintf(stderr, "in bb-init\n");
     log_msg("\nsfs_init()\n");
-    
+
     log_conn(conn);
     log_fuse_context(fuse_get_context());
 
@@ -79,10 +78,10 @@ int sfs_getattr(const char *path, struct stat *statbuf)
 {
     int retstat = 0;
     char fpath[PATH_MAX];
-    
+
     log_msg("\nsfs_getattr(path=\"%s\", statbuf=0x%08x)\n",
-	  path, statbuf);
-    
+            path, statbuf);
+
     return retstat;
 }
 
@@ -102,9 +101,8 @@ int sfs_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 {
     int retstat = 0;
     log_msg("\nsfs_create(path=\"%s\", mode=0%03o, fi=0x%08x)\n",
-	    path, mode, fi);
-    
-    
+            path, mode, fi);
+
     return retstat;
 }
 
@@ -114,7 +112,6 @@ int sfs_unlink(const char *path)
     int retstat = 0;
     log_msg("sfs_unlink(path=\"%s\")\n", path);
 
-    
     return retstat;
 }
 
@@ -132,9 +129,8 @@ int sfs_open(const char *path, struct fuse_file_info *fi)
 {
     int retstat = 0;
     log_msg("\nsfs_open(path\"%s\", fi=0x%08x)\n",
-	    path, fi);
+            path, fi);
 
-    
     return retstat;
 }
 
@@ -156,8 +152,7 @@ int sfs_release(const char *path, struct fuse_file_info *fi)
 {
     int retstat = 0;
     log_msg("\nsfs_release(path=\"%s\", fi=0x%08x)\n",
-	  path, fi);
-    
+            path, fi);
 
     return retstat;
 }
@@ -177,9 +172,8 @@ int sfs_read(const char *path, char *buf, size_t size, off_t offset, struct fuse
 {
     int retstat = 0;
     log_msg("\nsfs_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi);
+            path, buf, size, offset, fi);
 
-   
     return retstat;
 }
 
@@ -192,40 +186,34 @@ int sfs_read(const char *path, char *buf, size_t size, off_t offset, struct fuse
  * Changed in version 2.2
  */
 int sfs_write(const char *path, const char *buf, size_t size, off_t offset,
-	     struct fuse_file_info *fi)
+              struct fuse_file_info *fi)
 {
     int retstat = 0;
     log_msg("\nsfs_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
-	    path, buf, size, offset, fi);
-    
-    
+            path, buf, size, offset, fi);
+
     return retstat;
 }
-
 
 /** Create a directory */
 int sfs_mkdir(const char *path, mode_t mode)
 {
     int retstat = 0;
     log_msg("\nsfs_mkdir(path=\"%s\", mode=0%3o)\n",
-	    path, mode);
-   
-    
+            path, mode);
+
     return retstat;
 }
-
 
 /** Remove a directory */
 int sfs_rmdir(const char *path)
 {
     int retstat = 0;
     log_msg("sfs_rmdir(path=\"%s\")\n",
-	    path);
-    
-    
+            path);
+
     return retstat;
 }
-
 
 /** Open directory
  *
@@ -238,9 +226,8 @@ int sfs_opendir(const char *path, struct fuse_file_info *fi)
 {
     int retstat = 0;
     log_msg("\nsfs_opendir(path=\"%s\", fi=0x%08x)\n",
-	  path, fi);
-    
-    
+            path, fi);
+
     return retstat;
 }
 
@@ -266,11 +253,10 @@ int sfs_opendir(const char *path, struct fuse_file_info *fi)
  * Introduced in version 2.3
  */
 int sfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset,
-	       struct fuse_file_info *fi)
+                struct fuse_file_info *fi)
 {
     int retstat = 0;
-    
-    
+
     return retstat;
 }
 
@@ -282,29 +268,27 @@ int sfs_releasedir(const char *path, struct fuse_file_info *fi)
 {
     int retstat = 0;
 
-    
     return retstat;
 }
 
 struct fuse_operations sfs_oper = {
-  .init = sfs_init,
-  .destroy = sfs_destroy,
+    .init = sfs_init,
+    .destroy = sfs_destroy,
 
-  .getattr = sfs_getattr,
-  .create = sfs_create,
-  .unlink = sfs_unlink,
-  .open = sfs_open,
-  .release = sfs_release,
-  .read = sfs_read,
-  .write = sfs_write,
+    .getattr = sfs_getattr,
+    .create = sfs_create,
+    .unlink = sfs_unlink,
+    .open = sfs_open,
+    .release = sfs_release,
+    .read = sfs_read,
+    .write = sfs_write,
 
-  .rmdir = sfs_rmdir,
-  .mkdir = sfs_mkdir,
+    .rmdir = sfs_rmdir,
+    .mkdir = sfs_mkdir,
 
-  .opendir = sfs_opendir,
-  .readdir = sfs_readdir,
-  .releasedir = sfs_releasedir
-};
+    .opendir = sfs_opendir,
+    .readdir = sfs_readdir,
+    .releasedir = sfs_releasedir};
 
 void sfs_usage()
 {
@@ -316,29 +300,30 @@ int main(int argc, char *argv[])
 {
     int fuse_stat;
     struct sfs_state *sfs_data;
-    
+
     // sanity checking on the command line
-    if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-'))
-	sfs_usage();
+    if ((argc < 3) || (argv[argc - 2][0] == '-') || (argv[argc - 1][0] == '-'))
+        sfs_usage();
 
     sfs_data = malloc(sizeof(struct sfs_state));
-    if (sfs_data == NULL) {
-	perror("main calloc");
-	abort();
+    if (sfs_data == NULL)
+    {
+        perror("main calloc");
+        abort();
     }
 
     // Pull the diskfile and save it in internal data
-    sfs_data->diskfile = argv[argc-2];
-    argv[argc-2] = argv[argc-1];
-    argv[argc-1] = NULL;
+    sfs_data->diskfile = argv[argc - 2];
+    argv[argc - 2] = argv[argc - 1];
+    argv[argc - 1] = NULL;
     argc--;
-    
+
     sfs_data->logfile = log_open();
-    
+
     // turn over control to fuse
     fprintf(stderr, "about to call fuse_main, %s \n", sfs_data->diskfile);
     fuse_stat = fuse_main(argc, argv, &sfs_oper, sfs_data);
     fprintf(stderr, "fuse_main returned %d\n", fuse_stat);
-    
+
     return fuse_stat;
 }
