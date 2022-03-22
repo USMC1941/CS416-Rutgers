@@ -149,7 +149,7 @@ We have provided you with a basic set of stub code that will give you a framewor
 
 -   Didn't work:
 
--   Did work (See [`mount()`] output):
+-   Did work (See [`mount()`](https://man7.org/linux/man-pages/man8/mount.8.html) output):
 
     ```
     sfs on /.autofs/tmp/<NetID>/mountdir type fuse.sfs (rw,nosuid,nodev,user=username)

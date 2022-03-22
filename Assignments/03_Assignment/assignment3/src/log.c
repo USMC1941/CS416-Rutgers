@@ -23,15 +23,13 @@
 
 #include "log.h"
 
-FILE *log_open()
-{
-    FILE *logfile;
+FILE* log_open() {
+    FILE* logfile;
 
     // very first thing, open up the logfile and mark that we got in
     // here.  If we can't open the logfile, we're dead.
     logfile = fopen("sfs.log", "w");
-    if (logfile == NULL)
-    {
+    if (logfile == NULL) {
         perror("logfile");
         exit(EXIT_FAILURE);
     }
@@ -42,8 +40,7 @@ FILE *log_open()
     return logfile;
 }
 
-void log_msg(const char *format, ...)
-{
+void log_msg(const char* format, ...) {
     va_list ap;
     va_start(ap, format);
 
@@ -51,8 +48,7 @@ void log_msg(const char *format, ...)
 }
 
 // fuse context
-void log_fuse_context(struct fuse_context *context)
-{
+void log_fuse_context(struct fuse_context* context) {
     log_msg("    context:\n");
 
     /** Pointer to the fuse object */
@@ -74,8 +70,8 @@ void log_fuse_context(struct fuse_context *context)
     /** Private filesystem data */
     //	void *private_data;
     log_struct(context, private_data, % 08x, );
-    log_struct(((struct sfs_state *)context->private_data), logfile, % 08x, );
-    log_struct(((struct sfs_state *)context->private_data), diskfile, % s, );
+    log_struct(((struct sfs_state*)context->private_data), logfile, % 08x, );
+    log_struct(((struct sfs_state*)context->private_data), diskfile, % s, );
 
     /** Umask of the calling process (introduced in version 2.8) */
     //	mode_t umask;
@@ -85,8 +81,7 @@ void log_fuse_context(struct fuse_context *context)
 // struct fuse_conn_info contains information about the socket
 // connection being used.  I don't actually use any of this
 // information in sfs
-void log_conn(struct fuse_conn_info *conn)
-{
+void log_conn(struct fuse_conn_info* conn) {
     log_msg("    conn:\n");
 
     /** Major version of the protocol (read-only) */
@@ -125,8 +120,7 @@ void log_conn(struct fuse_conn_info *conn)
 // This dumps all the information in a struct fuse_file_info.  The struct
 // definition, and comments, come from /usr/include/fuse/fuse_common.h
 // Duplicated here for convenience.
-void log_fi(struct fuse_file_info *fi)
-{
+void log_fi(struct fuse_file_info* fi) {
     log_msg("    fi:\n");
 
     /** Open flags.  Available in open() and release() */
@@ -167,8 +161,7 @@ void log_fi(struct fuse_file_info *fi)
 
 // This dumps the info from a struct stat.  The struct is defined in
 // <bits/stat.h>; this is indirectly included from <fcntl.h>
-void log_stat(struct stat *si)
-{
+void log_stat(struct stat* si) {
     log_msg("    si:\n");
 
     //  dev_t     st_dev;     /* ID of device containing file */
@@ -211,8 +204,7 @@ void log_stat(struct stat *si)
     log_struct(si, st_ctime, 0x % 08lx, );
 }
 
-void log_statvfs(struct statvfs *sv)
-{
+void log_statvfs(struct statvfs* sv) {
     log_msg("    sv:\n");
 
     //  unsigned long  f_bsize;    /* file system block size */
@@ -249,8 +241,7 @@ void log_statvfs(struct statvfs *sv)
     log_struct(sv, f_namemax, % ld, );
 }
 
-void log_utime(struct utimbuf *buf)
-{
+void log_utime(struct utimbuf* buf) {
     log_msg("    buf:\n");
 
     //    time_t actime;
