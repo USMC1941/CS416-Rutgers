@@ -64,7 +64,7 @@ int rmdir(char* path)
 
 ## 3. Recommended Procedure
 
--   Download, build and test the stub code, as detailed in [subsection 4.1](#41-init-detail) below.
+-   Download, build and test the stub code, as detailed in [subsection 3.1](#31-stub-code) below.
 -   Read through the `*.c` and `*.h` files in the `src` directory of the stub code
 -   Make a copy of the stub code, write some simple test code to execute filesystem operations on the example filesystem and look at the log to see how and with what parameters the functions were called.
 -   First write some simple code to test out the functions in `block.c` to emulate reading and writing information in 'disk blocks' to your flat file.
