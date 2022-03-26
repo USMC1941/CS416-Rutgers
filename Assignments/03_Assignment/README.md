@@ -24,14 +24,14 @@ Your scheduler and memory manager **do not** have to coexist with your filesyste
 You should implement the following system calls at minimum:
 
 ```c
-int create(char* path)
-int delete(char* path)
-int stat(char* path, struct stat* buf)
-int open(char* path)
-int close(int fileID)
-int read(int fileID, void* buffer, int bytes)
-int write(int fileID, void* buffer, int bytes)
-struct dirent* readdir(int directoryID)
+int create(char* path);
+int delete(char* path);
+int stat(char* path, struct stat* buf);
+int open(char* path);
+int close(int fileID);
+int read(int fileID, void* buffer, int bytes);
+int write(int fileID, void* buffer, int bytes);
+struct dirent* readdir(int directoryID);
 ```
 
 Since you will be using FUSE, you will implement these system calls by filling in code for the appropriate FUSE functions. Beyond the system calls, you will also need to implement some FUSE functions like `init()` and `destroy()` that allow FUSE to set up and operate your file system. See [section 3.2](#32-basic-fuse-elements) for a list of which FUSE functions cover these system calls and perform other useful operations. Your file data block and indexing/information blocks can take any structure you like, however you should use an indexing mechanism that holds a series of pointers to direct-mapped blocks. A filesystem that uses direct-mapped indexes is required. You may want to look at how the original UNIX filesystem (UFS) is implemented, and especially examine the structure of i-nodes.
@@ -49,8 +49,8 @@ Only direct-mapped file indexes are required, however in order to store larger f
 We only require you to implement file interactions and `readdir` to allow the filesystem to be mounted. If you want to provide directory support to lay the groundwork for your filesystem to use directories, you could implement the informational directory functions for additional credit:
 
 ```c
-int opendir(char* path)
-int closedir(int directoryID)
+int opendir(char* path);
+int closedir(int directoryID);
 ```
 
 #### Extended Directory Operations
@@ -58,8 +58,8 @@ int closedir(int directoryID)
 Once you have the informational directory operations above, you can now build functions to create and remove directories, and you can freely traverse your filesystem, for additional credit:
 
 ```c
-int mkdir(char* path)
-int rmdir(char* path)
+int mkdir(char* path);
+int rmdir(char* path);
 ```
 
 ## 3. Recommended Procedure

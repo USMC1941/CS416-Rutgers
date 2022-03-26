@@ -140,7 +140,7 @@ Once the above has been implemented, designate the last 4 contiguous pages from 
 
 If a thread wants to allocate memory in the shared region it should explicitly call the 'shared `malloc`' function:
 ```c
-void* shalloc(size_t size)
+void* shalloc(size_t size);
 ```
 
 This function returns a pointer to a block of the requested size from the shared region.
